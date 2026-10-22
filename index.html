@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-HK">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>手搖發電電筒的運作原理｜粉嶺官立中學 DAT</title>
+<link rel="stylesheet" href="style.css" />
+
+<style id="dat-brand-align">
+  .brand.dat-brand, a.brand.dat-brand {
+    display: flex !important;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .brand.dat-brand .crest,
+  .brand.dat-brand .logo {
+    width: 48px; height: 48px; object-fit: contain; flex-shrink: 0; display: block;
+  }
+  .brand.dat-brand .brand-text {
+    display: flex; flex-direction: column; line-height: 1.25; gap: 0.1rem;
+  }
+  .brand.dat-brand .school,
+  .brand.dat-brand .school-zh {
+    font-size: 0.95rem; font-weight: 800; color: #0A7A4F; letter-spacing: 0.01em;
+  }
+  .brand.dat-brand .dat,
+  .brand.dat-brand .school-en {
+    font-size: 0.92rem; font-weight: 800; color: #0A7A4F; letter-spacing: 0.01em;
+  }
+  .brand.dat-brand:hover .school,
+  .brand.dat-brand:hover .school-zh,
+  .brand.dat-brand:hover .dat,
+  .brand.dat-brand:hover .school-en { opacity: 0.85; }
+  .site-header .subject-tag { display: none !important; }
+  .site-footer .back-dat {
+    display: inline-block; margin-top: 0.75rem; font-weight: 800; color: #0A7A4F;
+    text-decoration: none; border-bottom: 2px solid #0A7A4F; padding-bottom: 0.1rem;
+  }
+  .site-footer .back-dat:hover { opacity: 0.8; }
+</style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a class="brand dat-brand" href="https://dat-fgss.github.io/Home/">
+    <img src="assets/logo-crest.png" alt="粉嶺官立中學校徽" class="logo crest" width="48" height="48" />
+    <div class="brand-text">
+      <span class="school school-zh">粉嶺官立中學</span>
+      <span class="dat school-en">設計與應用科技科 (DAT)</span>
+    </div>
+  </a>
+  <span class="subject-tag">設計與應用科技 DAT</span>
+</header>
+
+<main>
+  <!-- 引言 -->
+  <section class="hero">
+    <p class="eyebrow">能量轉換 · 電磁感應</p>
+    <h1>手搖發電電筒<br /><span class="glow-text">是怎樣發光的？</span></h1>
+    <p class="lead">不用換電池，只要轉動手柄就能發光。按下「開始」，用 20 秒透視電筒內部，看看能量怎樣一步步轉換。</p>
+  </section>
+
+  <!-- 3D 動畫區 -->
+  <section class="viewer-wrap" aria-label="3D 動畫展示">
+    <div class="viewer" id="viewer">
+      <div class="viewer-placeholder" id="viewerPlaceholder">
+        <div class="scan-ring"></div>
+        <p>3D 場景載入中…</p>
+      </div>
+
+      <!-- HUD 疊層 -->
+      <div class="hud hud-top">
+        <span class="hud-chip" id="stageLabel">待機中</span>
+        <span class="hud-time" id="timeLabel">00.0 s / 20.0 s</span>
+      </div>
+      <div class="caption" id="caption" aria-live="polite">
+        <strong id="captionTitle">準備好了嗎？</strong>
+        <span id="captionText">按下「開始」，觀看手搖發電電筒的運作過程。</span>
+      </div>
+    </div>
+
+    <!-- 控制列 -->
+    <div class="controls">
+      <button class="btn-start" id="btnStart" type="button" aria-label="開始播放">
+        <span class="btn-icon" id="btnIcon">▶</span><span id="btnStartText">開始</span>
+      </button>
+      <div class="timeline">
+        <div class="timeline-bar"><i id="timelineFill"></i></div>
+        <div class="timeline-labels" aria-hidden="true">
+          <span>轉動手柄</span><span>電磁感應</span><span>儲存電能</span><span>L.E.D. 發光</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 能量轉換鏈 -->
+  <section class="section">
+    <h2 class="section-title"><span>01</span>能量轉換鏈</h2>
+    <div class="chain">
+      <div class="node"><em>💪</em><b>動能</b><small>手轉動手柄</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><em>⚙️</em><b>齒輪加速</b><small>轉速提高</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><em>🧲</em><b>電能</b><small>發電機</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><em>🔋</em><b>化學能</b><small>儲電池充電</small></div>
+      <div class="arrow">→</div>
+      <div class="node"><em>💡</em><b>光能</b><small>L.E.D. 發光</small></div>
+    </div>
+  </section>
+
+  <!-- 知識重點 -->
+  <section class="section">
+    <h2 class="section-title"><span>02</span>知識重點</h2>
+    <div class="facts">
+      <div class="fact">
+        <h3>齒輪比（加速）</h3>
+        <p>小齒輪轉速 = 大齒輪轉速 × <span class="formula">大齒輪齒數 ÷ 小齒輪齒數</span></p>
+        <p class="eg">例：40 齒帶動 10 齒 → 快 4 倍；兩級複合齒輪 → 4 × 4 = 快 16 倍。</p>
+      </div>
+      <div class="fact">
+        <h3>電磁感應</h3>
+        <p>線圈內的磁場<strong>變化得越快</strong>，產生的感應電壓就越大，所以要用齒輪令發電機高速轉動。</p>
+      </div>
+      <div class="fact">
+        <h3>透鏡折射</h3>
+        <p>L.E.D. 發出的光穿過前面的透明塑膠透鏡時會<strong>折射</strong>，改變方向，令光線分散照亮前方。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>粉嶺官立中學 · 設計與應用科技科（DAT）教學材料</p>
+  <p><a class="back-dat" href="https://dat-fgss.github.io/Home/">返回DAT網頁</a></p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
